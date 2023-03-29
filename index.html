@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fantasy Name Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f0f0;
+        }
+        button {
+            font-size: 20px;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Fantasy Name Generator</h1>
+    <h2><b>This site is under construction, fancy css is needed!</b></h2>
+    <button id="generate">Generate!</button>
+    <ul id="nameList"></ul>
+    <script>
+        const nameList = document.getElementById("nameList");
+        const generateButton = document.getElementById("generate");
+
+        const firstPart = ["Bel", "Gor", "Mor", "Ven", "El", "Fel", "Thor", "Gwyn", "Ael", "Drak"];
+        const secondPart = ["dor", "gorn", "moth", "mir", "riel", "far", "gar", "wen", "thor", "zor"];
+        const thirdPart = ["", "in", "ius", "or", "il", "on", "ar", "ath", "an", "ir"];
+        
+        function getRandomElement(arr) {
+            return arr[Math.floor(Math.random() * arr.length)];
+        }
+
+        function generateName() {
+            return getRandomElement(firstPart) + getRandomElement(secondPart) + getRandomElement(thirdPart);
+        }
+
+        function generateNames() {
+            let names = [];
+            for (let i = 0; i < 10; i++) {
+                names.push(generateName());
+            }
+            return names;
+        }
+
+        function displayNames(names) {
+            nameList.innerHTML = "";
+            for (let name of names) {
+                const listItem = document.createElement("li");
+                listItem.textContent = name;
+                nameList.appendChild(listItem);
+            }
+        }
+
+        generateButton.addEventListener("click", () => {
+            const names = generateNames();
+            displayNames(names);
+        });
+    </script>
+</body>
+</html>
